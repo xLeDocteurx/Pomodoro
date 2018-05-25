@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+
+    <title>Pomodoro</title>
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+
+    <script language="javascript" type="text/javascript" src="js/p5.js"></script>
+	<script language="javascript" type="text/javascript" src="js/addons/p5.sound.js"></script> 
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+
+    <div class="holder">
+        
+        <div id = "creator">        
+            <div>
+                <!-- <button onclick="second = 1000">Normal Speed</button>
+                <button onclick="second = 10">Speed x 1000</button> -->
+
+                <b>
+                <label>
+                    En cours :
+                </label><br>
+                <input type="text" id="content" placeholder="Préparer un éxercice JSPréparer un éxercice JS" onkeydown="if (event.key == 'Enter') {submitChrono()}">
+                <!-- <br> -->
+                <!-- <textarea id="content" > -->
+    
+                </textarea>
+                </b>
+            </div>
+            <button id="submit" onclick="submitChrono();"><b>Ajouter</b></button>
+        <div>
+            <div class="foot">
+                <button id="play" onclick="play()"><b>Play</b></button>
+                <button id="pause" onclick="pause()"><b>Pause</b></button>
+                <button id="stop" onclick="stop()"><b>Stop</b></button>
+            </div>
+        </div>
+        </div>
+    
+        <!-- <button onclick="displayTime(chrono.timeElapsed())">Display Time</button> -->
+
+    </div>
+            
+    <div id="chronos-container">
+
+    </div>
+
+
+
+
+	<script language="javascript" type="text/javascript" src="chronos.js"></script>
+	<script language="javascript" type="text/javascript" src="pomodoro.js"></script>
+
+</body>
+</html>
