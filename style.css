@@ -198,3 +198,9 @@ button:active {
     border-left: 2px solid #EED093;
     border-top: 2px solid #EED093;
 }
+
+
+#pause {
+
+    display: initial;
+}

@@ -1,9 +1,18 @@
 var chronos = [];
+var pauseMode = false;
+var pauseTime = 5;
+var pauseChrono;
+var pauseDiv = document.getElementById("pauseDiv");
+
+if (pauseMode == false) {
+    
+    pauseDiv.style.display = "none";
+}
 
 function submitChrono () {
     var content = document.getElementById("content");
     var name = document.getElementById("content").value;
-    chronos[chronos.length] = new chrono(name, 25);
+    chronos[chronos.length] = new chrono(name, 10);
     
     document.getElementById("content").value = "Préparer un éxercice JS";
 }
@@ -37,32 +46,57 @@ function post (id, objet) {
 
 function play () {
     
-    var currentchrono = chronos[0];
+    if (chronos.length >= 0) {
 
-    console.log("current chrono : " + currentchrono.id + " // current time on this one : " + currentchrono.timeInterval);   
+        var currentchrono = chronos[0];
 
-    currentchrono.isPaused = false;
-    clearInterval(this.timeInterval);
-    currentchrono.timeInterval = setInterval("this.update()", second);
+        console.log("current chrono : " + currentchrono.id + " // current time on this one : " + currentchrono.timeInterval);   
+    
+        currentchrono.isPaused = false;
+        clearInterval(currentchrono.timeInterval);
+        currentchrono.timeInterval = setInterval("this.update()", second);
+    }
+
+    if (pauseMode == false) {
+        
+        pauseDiv.style.display = "none";
+    } else {
+        pauseDiv.style.display = "block";
+    }
 }
 
 function stop () {
 
-    console.log("current chrono" + currentchrono + "current time on this one : " + currentchrono.timeInterval);   
-
     var currentchrono = chronos[0];
+
+    console.log("current chrono" + currentchrono + "current time on this one : " + currentchrono.timeInterval);   
     
     // self.minutes = 0;
     currentchrono.isPaused = false;
-    clearInterval(this.timeInterval); 
+    clearInterval(currentchrono.timeInterval); 
     changeChrono(currentchrono.id);
+
+    chronos.shift();
+    stopSound.play();
+
+    if (pauseMode == false) {
+        // pauseChrono = new chrono("pause", 5);
+        pauseMode = true;
+    } else {
+        pauseChrono = null;
+        pauseMode = false;
+        
+        if (chronos.length > 0) {
+            play();
+        }
+    }
 }
 
 function pause () {
 
-    console.log("current chrono" + currentchrono + "current time on this one : " + currentchrono.timeInterval);   
-
     var currentchrono = chronos[0];
+
+    console.log("current chrono" + currentchrono + "current time on this one : " + currentchrono.timeInterval);   
 
     currentchrono.isPaused = true;
     clearInterval(currentchrono.timeInterval);   
